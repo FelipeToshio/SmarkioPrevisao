@@ -1,0 +1,35 @@
+<div class="esquerda">
+        <div class="menu">
+            <div class="label"><label>Digite a cidade:</label></div>
+            <input id="cidade" type="select"></input>
+        </div>
+        <script type="text/javascript">
+            $('#cidade').keypress(function (event) {
+                var keycode = (event.keyCode ? event.keyCode : event.which);
+                if (keycode == '13') {
+                        var cit = $("#cidade").val();
+                        callAPI(cit);
+                }
+                event.stopPropagation();
+            });
+        </script>
+        <div class="cidade">
+            <span id="nomeCidade"class="nomeCidade">Itajuba, </span><span id="pais"class="nomeCidade">Brasil </span><br>
+            <span id="dia"class="status">Sabado, </span><span id="hora"class="status">9:</span><span id="minutos"class="status">30,  </span><span id="clima"class="status">Ensolarado</span>
+        </div>
+        <div class="temperatura">
+            <span id="tempNumero" class="tempNumero">23°C</span>
+        </div>
+        <div  id="img"class="imagem">
+
+        </div>
+        <div class="humidade">
+            <span id="humidade"class="status">Humidade: 45%</span>
+        </div>
+    </div>
+
+    <div class="direita">
+
+
+
+    </div>
