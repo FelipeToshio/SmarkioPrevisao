@@ -1,6 +1,9 @@
+//controle da API, metodos de chamada e escrita
 
 var apiURL = "http://api.openweathermap.org/data/2.5/weather";
 var apiKEY = "9d7aa8de744de1ab11f692fcb71725ee";
+
+//função de inicialização da chamada
 function callAPI(address){
     if(address != ""){
         var nomeCidade = address.trim();
@@ -10,7 +13,7 @@ function callAPI(address){
     }
     
 }
-
+//função de chamada da URL, onde realmente faz a chamada 
 function getData(url, cidade, key){
     const request = $.ajax({
         url: url,
@@ -24,7 +27,7 @@ function getData(url, cidade, key){
         
     })
 }
-
+// função que recebe o dado e altera os valores da view 
 function fetchData(forecast){
     console.log(forecast);
     //temperatura
