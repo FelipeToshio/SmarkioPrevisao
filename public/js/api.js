@@ -25,6 +25,7 @@ function getData(url, cidade, key){
     }).then(function(data){
         console.log(data.name)
         $.post("/",{
+
             Nome: data.name,
             Temperatura: data.main.temp,
             Condicao: data.weather[0].description,
@@ -37,7 +38,6 @@ function getData(url, cidade, key){
 // função que recebe o dado e altera os valores da view 
 function fetchData(forecast){
     console.log(forecast);
-    //mandando pro BD
 
     //temperatura
     var str = document.getElementById("tempNumero").innerHTML; 

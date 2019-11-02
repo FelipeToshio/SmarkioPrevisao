@@ -29,32 +29,44 @@ const bodyparser = require('body-parser');
             Condicao: {type: Sequelize.STRING},
             Quantidade: {type: Sequelize.INTEGER}
         })
-
+        
         module.exports = {
             Sequelize: Sequelize,
             sequelize: sequelize,
             historico
         }
-        historico.sync({force: true});
+        //historico.sync({force: true});
 
     //Public  (css e js) 
     app.use(express.static(path.join(__dirname,"public")));
     
     //Rotas
-
-        app.get('/principal', function(req, res){  
-            res.render('principal');
+    
+        app.get('/principal', function(req, res){ 
+            historico.findAll({
+                order: [['createdAt', 'DESC']]
+            }).then(function(cidades){
+                res.render('principal', {cidades :cidades});
+            })
         });
         app.post('/', function(req, res){
-            console.log(req.body);
+            
+            var qtd = 1;
+            historico.count({
+                where: {
+                    Nome: "'"+req.body.Nome+"'"
+                }}).then(function(count){
+                    qtd += count;
+                })
             historico.create({                
                 Nome: req.body.Nome,
                 Temperatura: req.body.Temperatura,
                 Condicao: req.body.Condicao,
-                Quantidade: 1,
+                Quantidade: qtd,
             })
-        })
+            res.render('principal');
 
+        })
     //sempre no final    
     app.listen(8081, function() { 
         console.log("Server on");

@@ -40,7 +40,19 @@
                 <button class="cit">Cidade 1</button>
             </div>
         </div>
-
+        <div class="campoDir">
+            <span>Historico</span>
+            <table style="width:100%">
+                    {{#each cidades}}
+                        <tr>
+                            <th>{{Nome}}</th>
+                            <th>{{Temperatura}}°C</th>
+                            <th>{{Condicao}}</th>
+                        </tr>
+                    {{/each}}
+                
+            </table>
+        </div>
 
     </div>
 

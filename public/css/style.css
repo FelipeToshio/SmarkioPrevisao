@@ -121,3 +121,18 @@ body{
     border:1px solid #e4e3e370;
     pointer-events: none;
 }
+
+.campoDir{
+    width: 100%;
+    height: 73%;
+    background-color: #ffffff;
+    border-radius: 7px;
+    margin-top: 2%;
+    margin-left: 0;
+    text-align: center;
+    overflow: hidden;
+}
+.campoDir span{
+    padding: 0;
+    font-size: 150%;
+}

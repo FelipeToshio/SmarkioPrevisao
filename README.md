@@ -11,7 +11,7 @@ baixar o BD
                         USE 'nome_do_banco'
                         SHOW TABLES;
                         DESCRIBE 'nome_da_tabela'
-6) Em models/Post.js na linha 9 existe um comando que so deve ser executado na primeira execução do banco, caso seja executado outra vez ele sobrescrevera a tabela, recomendado que comente essa linha                   
+6) Em app.js na linha 38 existe um comando que so deve ser executado na primeira execução do banco, caso seja executado outra vez ele sobrescrevera a tabela, recomendado que comente essa linha                   
 7) Instalar nodemon(faz o codigo atualizar automaticamente):
         obs: No meu caso eu instalo globalmente
             npm install nodemon -g
