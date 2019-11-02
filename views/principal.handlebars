@@ -9,6 +9,7 @@
                 if (keycode == '13') {
                         var cit = $("#cidade").val();
                         callAPI(cit);
+
                 }
                 event.stopPropagation();
             });
@@ -42,3 +43,12 @@
 
 
     </div>
+
+<!--<div style="display:none">-->
+<div>
+    <form id="myForm" action="/add" method="POST">
+        <input name="formNome" id="formNome" value="teste">
+        <input name="formTemp" id="formTemp"  value="23">
+        <input name="formClima" id="formClima"  value="teste">
+    </form>
+</div>
