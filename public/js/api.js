@@ -22,10 +22,15 @@ function getData(url, cidade, key){
         data: {q: cidade, appid: key, units: 'metric',lang: 'pt'},
         jsonpCallback: "fetchData",
         type: "GET",
-    }).fail(function(error) {
-        console.log(error);
-        alert('Erro na função de requisição');
-        
+    }).then(function(data){
+        console.log(data.name)
+        $.post("/",{
+            Nome: data.name,
+            Temperatura: data.main.temp,
+            Condicao: data.weather[0].description,
+            Quantidade: 1,
+            
+        })
     })
 }
 
@@ -38,18 +43,12 @@ function fetchData(forecast){
     var str = document.getElementById("tempNumero").innerHTML; 
     var res = str.replace(/(-?\d+(?:\.\d*)?)/, forecast.main.temp);
     document.getElementById("tempNumero").innerHTML = res;
-        //temperatura no formulario
-        var str = document.getElementById("formTemp").value; 
-        var res = str.replace(/(-?\d+(?:\.\d*)?)/, forecast.main.temp);
-        document.getElementById("formTemp").value = res;
+       
     //nome da cidade
     var str = document.getElementById("nomeCidade").innerHTML; 
     var res = str.replace(/(-?\w+(?:\ \w*)?)/, forecast.name);
     document.getElementById("nomeCidade").innerHTML = res;
-        //nome da cidade pro form
-        var str = document.getElementById("formNome").value; 
-        var res = str.replace(/(-?\w+(?:\ \w*)?)/, forecast.name);
-        document.getElementById("formNome").value = res;
+    
     //sigla do país
     var str = document.getElementById("pais").innerHTML; 
     var res = str.replace(/(-?\w+(?:\ \w*)?)/, forecast.sys.country);
@@ -113,9 +112,7 @@ function fetchData(forecast){
     var str = document.getElementById("clima").innerHTML; 
     //var res = str.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/(-?\w+(?:\ \w*)?)/, forecast.weather[0].description); nao pegava segundo espaço
     document.getElementById("clima").innerHTML = forecast.weather[0].description;
-        //clima no forme
-        var str = document.getElementById("formClima").value; 
-        document.getElementById("formClima").value = forecast.weather[0].description;
+        
     //humidade
     var str = document.getElementById("humidade").innerHTML; 
     var res = str.replace(/(-?\d+(?:\.\d*)?)/, forecast.main.humidity);
@@ -125,5 +122,5 @@ function fetchData(forecast){
 
     var str = document.getElementById("img").src; 
     document.getElementById("img").src = "http://openweathermap.org/"+"img/"+"wn/"+forecast.weather[0].icon+"@2x.png";
-    document.getElementById("myForm").submit();
+    
 }
