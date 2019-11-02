@@ -24,11 +24,23 @@ const path = require('path');
 
         const Historico = sequelize.define('historico', {
             Nome: {type: Sequelize.STRING},
-            Temperatura: {type: Sequelize.INTEGER},
+            Temperatura: {type: Sequelize.FLOAT},
             Condicao: {type: Sequelize.STRING},
-            Tempo: {type: Sequelize.DATE}
+            Quantidade: {type: Sequelize.INTEGER}
         })
-        Historico.sync({force: true});
+        //Historico.sync({force: true});
+
+        function post(nome, temp, condicao){
+            console.log("cheguei na post");
+            Historico.create({
+                Nome: nome,
+                Temperatura: temp,
+                Condicao: condicao,
+                Quantidade: 1,
+            });
+        }
+        exports.post = post;
+
 
     //Public  (css e js) 
     app.use(express.static(path.join(__dirname,"public")));

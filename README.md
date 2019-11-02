@@ -8,14 +8,16 @@ baixar o BD
 5) Entrar no MySql command line e criar o banco de daodos "historicodeprevisoes"
     Comando: CREATE DATABASE historicodeprevisoes;
     Outros comandos:    SHOW DATABASES; 
+                        USE 'nome_do_banco'
                         SHOW TABLES;
-                        USE 'nome_da_tabela'
-6) Instalar nodemon(faz o codigo atualizar automaticamente):
+                        DESCRIBE 'nome_da_tabela'
+6) Em app.js na linha 31 existe um comando que so deve ser executado na primeira execução do banco, caso seja executado outra vez ele sobrescrevera a tabela                  
+7) Instalar nodemon(faz o codigo atualizar automaticamente):
         obs: No meu caso eu instalo globalmente
             npm install nodemon -g
-7) A partir de um terminal administrador rodar direto da pasta SmarkioPrevisao
+8) A partir de um terminal administrador rodar direto da pasta SmarkioPrevisao
             nodemon app.js
-8) Acessar o link http://localhost:8081/principal
+9) Acessar o link http://localhost:8081/principal
 
 Possiveis bugs do codigo:
 

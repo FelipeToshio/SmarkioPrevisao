@@ -30,6 +30,11 @@ function getData(url, cidade, key){
 // função que recebe o dado e altera os valores da view 
 function fetchData(forecast){
     console.log(forecast);
+    //mandando pro BD
+
+    var post = require('../../app.js');
+    post.post(forecast.name, forecast.main.temp, forecast.weather[0].description);
+
     //temperatura
     var str = document.getElementById("tempNumero").innerHTML; 
     var res = str.replace(/(-?\d+(?:\.\d*)?)/, forecast.main.temp);
@@ -99,8 +104,8 @@ function fetchData(forecast){
 
     //clima
     var str = document.getElementById("clima").innerHTML; 
-    var res = str.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/(-?\w+(?:\ \w*)?)/, forecast.weather[0].description);
-    document.getElementById("clima").innerHTML = res;
+    //var res = str.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/(-?\w+(?:\ \w*)?)/, forecast.weather[0].description); nao pegava segundo espaço
+    document.getElementById("clima").innerHTML = forecast.weather[0].description;
     
     //humidade
     var str = document.getElementById("humidade").innerHTML; 
