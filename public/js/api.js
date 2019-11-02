@@ -36,13 +36,13 @@ function fetchData(forecast){
     document.getElementById("tempNumero").innerHTML = res;
     //nome da cidade
     var str = document.getElementById("nomeCidade").innerHTML; 
-    var res = str.replace(/(\w+)/, forecast.name);
+    var res = str.replace(/(-?\w+(?:\ \w*)?)/, forecast.name);
     document.getElementById("nomeCidade").innerHTML = res;
     //sigla do país
     var str = document.getElementById("pais").innerHTML; 
-    var res = str.replace(/(\w+)/, forecast.sys.country);
+    var res = str.replace(/(-?\w+(?:\ \w*)?)/, forecast.sys.country);
     document.getElementById("pais").innerHTML = res;
-    
+   
     //hora
     var  d =  new Date();
     var flag =0;
@@ -52,11 +52,16 @@ function fetchData(forecast){
     h = d.getUTCHours()*3600;
         //pego horas em segundos somo com o timezone e transformo em horas
         resph = (h+forecast.timezone)/3600;
-
         // corrigir para 1 dia a frente
         if(resph > 24){
             resph -= 24;
             flag = 1;
+        }
+        if(resph <= 0){
+            resph += 24;
+        }
+        if(resph == 24){
+            resph = 00;
         }
         //replace horas
         var str = document.getElementById("hora").innerHTML; 
@@ -94,7 +99,7 @@ function fetchData(forecast){
 
     //clima
     var str = document.getElementById("clima").innerHTML; 
-    var res = str.replace(/(-?\w+(?:\ \w*)?)/, forecast.weather[0].description);
+    var res = str.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/(-?\w+(?:\ \w*)?)/, forecast.weather[0].description);
     document.getElementById("clima").innerHTML = res;
     
     //humidade
@@ -103,4 +108,7 @@ function fetchData(forecast){
     document.getElementById("humidade").innerHTML = res;
     
     //img
+
+    var str = document.getElementById("img").src; 
+    document.getElementById("img").src = "http://openweathermap.org/"+"img/"+"wn/"+forecast.weather[0].icon+"@2x.png";
 }
