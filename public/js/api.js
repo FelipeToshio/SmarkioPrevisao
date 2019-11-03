@@ -148,13 +148,21 @@ function trataHis(forecast) {
             continue
         };
         flags[forecast[i].Nome] = true;
-        output.push(forecast[i].Nome);
+        output.push(forecast[i]);
     }
 
-    for (ob of forecast){
-        if(output.indexOf(ob.Nome)){
-            ob.Quantidade += 1;
+    for (ob of output){
+        ob.Quantidade = 0;
+        for(var i =0; i < forecast.length; i++ ){
+            if(forecast[i].Nome == ob.Nome){
+                ob.Quantidade +=1;
+            }
         }
     }
-    console.log(forecast)
+    console.log(output)
+    var html = '';
+    for(var i =0; i < 5; i++ ){
+        html += "<button class='"+"cit"+"'>" + output[i].Nome + "</button>"
+    }
+    document.getElementById("but").innerHTML = html;
 }
