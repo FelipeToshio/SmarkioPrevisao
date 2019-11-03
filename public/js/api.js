@@ -108,7 +108,7 @@ function fetchData(forecast) {
         x = "Sexta-Feira";
     } else if (d == 6) {
         x = "Sabado";
-    } else if (d == 7) {
+    } else if (d == 0) {
         x = "Domingo";
     }
     var str = document.getElementById("dia").innerHTML;
@@ -159,6 +159,7 @@ function trataHis(forecast) {
             }
         }
     }
+    var final= []
     console.log(output)
     var html = '';
     for(var i =0; i < 5; i++ ){
