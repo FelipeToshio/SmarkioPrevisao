@@ -46,6 +46,7 @@ const bodyparser = require('body-parser');
             historico.findAll({
                 order: [['createdAt', 'DESC']]
             }).then(function(cidades){
+
                 res.render('principal', {cidades :cidades});
             })
         });
@@ -66,6 +67,13 @@ const bodyparser = require('body-parser');
             })
             res.render('principal');
 
+        })
+        app.get('/consultaBanco', function(req, res){
+            historico.findAll({
+                order: [['createdAt', 'DESC']]
+            }).then(function(data){
+                res.jsonp(data)
+            })
         })
     //sempre no final    
     app.listen(8081, function() { 
