@@ -1,5 +1,5 @@
 SmarkioPrevisao
-
+npm install
 baixar o BD
 1) https://dev.mysql.com/downloads/mysql/
 2) server only -> developement computer 
